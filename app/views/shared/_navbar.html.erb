@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-top">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Teenager", root_url, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-top">
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to(current_user.name, user_path(current_user)) %></li>
+          
+          <li><%= link_to mailbox_inbox_path do  %>
+            <% if unread_messages_count>0 %>
+              <span class="label label-danger pull-right">
+                <%=unread_messages_count%>
+              </span>
+            <% end %>
+              <em class="fa fa-inbox fa-lg"></em>
+              <span>Inbox</span>
+            <% end %>
+          </li>
+
+          <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
+        <% else %>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <li><%= link_to 'Sign in', user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

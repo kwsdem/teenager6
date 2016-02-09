@@ -1,0 +1,7 @@
+<% if activity.trackable.present? %>
+	<div id="post-<%= activity.trackable.id %>" class="activity-post">
+	  <%= render activity.trackable, remote: true %>
+	</div>
+<% else %>
+	<div></div>
+<% end %>
